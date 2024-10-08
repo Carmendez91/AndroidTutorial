@@ -1,7 +1,11 @@
 package com.example.tutorialapp.intents;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -39,5 +43,25 @@ public class IntentImplicito extends AppCompatActivity {
 
         String textoPrueba = extras.getString("Prueba");
         Log.d("Prueba",textoPrueba);
+
+        // URL del INTENT -> https://developer.android.com/guide/components/intents-common?hl=es-419#java
+        // Abrir una URL
+        // Recuperamos el objeto y añadimos un listener
+        ImageButton imageButton = findViewById(R.id.imageButton);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent implicito
+                    String url = "https://www.flaticon.es/resultados?word=chicken";
+                    //Creamos un intent y le pasamos la url
+                    //Actionview es informacion que se le pasa al usuario
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    //Ejecutamos la actividad
+                    startActivity(intent);
+
+            }
+        });
+
     }
 }
